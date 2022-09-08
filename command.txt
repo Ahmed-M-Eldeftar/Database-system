@@ -1,0 +1,10 @@
+Add command
+> node app.js add --id=2 --name='AhmedEldeftar5757' --degrees=15, 20, 30 --comment='A'
+Delete command
+> node app.js delete --id=2
+Update command
+> node app.js update --isearchId=1 --name='AhmedEldeftar4545'
+Read command
+> node app.js read --id=1       
+List command
+> node app.js list

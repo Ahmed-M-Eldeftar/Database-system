@@ -1,0 +1,90 @@
+const fs = require('fs')
+const yargs = require('yargs')
+const students = require('./students')
+yargs.command({
+    command:'add',
+    describe:'Add note',
+    builder:{
+        id:{
+            describe:'id',
+            type:'number',
+            demandOption:true
+        },
+        name:{
+            describe:'name',
+            type:'string',
+            demandOption:true
+        },
+        degrees:{
+            describe:'degrees',
+            type:'array',
+            demandOption:true
+        },
+        comment:{
+            describe:'comment',
+            type:'string',
+            demandOption:false
+        }
+    },
+    handler:()=>{
+        students.addStudents(yargs.argv.id,yargs.argv.name,yargs.argv.degrees,yargs.argv.comment);
+    }
+})
+yargs.command({
+    command:'delete',
+    describe:'Delete note',
+    builder:{
+        id:{
+            describe:'id',
+            type:'number',
+            demandOption:true
+        },
+    },
+    handler:()=>{
+        students.deleteStudent(yargs.argv.id);
+    }
+})
+yargs.command({
+    command:'update',
+    describe:'Update note',
+    builder:{
+        searchId:{
+            describe:'id',
+            type:'number',
+            demandOption:true
+        },
+        name:{
+            describe:'name',
+            type:'string',
+            demandOption:true
+        },
+    },
+    handler:()=>{
+        students.updateStudent(yargs.argv.searchId,yargs.argv.name);
+    }
+})
+yargs.command({
+    command:'read',
+    describe:'Read note',
+    builder:{
+        id:{
+            describe:'id',
+            type:'number',
+            demandOption:true
+        },
+    },
+    handler:()=>{
+        students.readStudent(yargs.argv.id);
+    }
+})
+yargs.command({
+    command:'list',
+    describe:'List note',
+    builder:{
+    },
+    handler:()=>{
+        students.listStudents();
+    }
+})
+console.log(yargs.argv)
+yargs.parse()
